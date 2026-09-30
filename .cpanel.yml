@@ -3,5 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
     - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp fishworks-logo.png $DEPLOYPATH
-    - /bin/cp lure-logo.png $DEPLOYPATH
+    - /bin/cp og-image.png $DEPLOYPATH

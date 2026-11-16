@@ -1,0 +1,14 @@
+/*
+Theme Name: Fishworks
+Theme URI: https://fishworks.co
+Author: rankONE
+Author URI: https://rankone.com.au
+Description: Custom theme for Fishworks, St Kilda. Pages use the Fishworks look by default; choose the "Lure" template in the page sidebar for the Lure page. Edit text, photos, hours and booking settings under Appearance → Customize.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: fishworks
+*/
+
+/* Styles live in assets/css/fishworks.css and assets/css/lure.css. */

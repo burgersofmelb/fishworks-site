@@ -2,5 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp og-image.png $DEPLOYPATH
+    - /bin/cp index.html lure.html $DEPLOYPATH
+    - /bin/mkdir -p ${DEPLOYPATH}img
+    - /bin/cp img/* ${DEPLOYPATH}img/

@@ -4,109 +4,188 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fishworks — St Kilda</title>
-<meta name="description" content="Fishworks, 31 Fitzroy Street, St Kilda. Opening soon — reservations now open.">
+<meta name="description" content="Fishworks, 31 Fitzroy Street, St Kilda. Oysters, whole fish and crayfish on Fitzroy Street. Book a table.">
 <meta property="og:title" content="Fishworks — St Kilda">
-<meta property="og:description" content="Opening soon at 31 Fitzroy Street, St Kilda.">
-<meta property="og:image" content="https://fishworks.co/og-image.png">
+<meta property="og:description" content="31 Fitzroy Street, St Kilda. Book a table.">
+<meta property="og:image" content="https://fishworks.co/img/spread-1400.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#f6f3ee; --ink:#1a1a1a; --muted:#6f6a63; --line:#dcd6cc;
-    --night:#121110; --neon:#e83a30;
+    --paper:#f5f2ec; --ink:#1b1b1a; --muted:#6d6860; --line:#ddd7cc;
+    --green:#1f4a3a; --lemon:#f1c232;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-weight:300;
-       font-size:15px;line-height:1.6;letter-spacing:.01em;-webkit-font-smoothing:antialiased}
+       font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  img{display:block;max-width:100%;height:auto}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:.28em;font-weight:400;color:var(--muted)}
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .btn{display:inline-block;border:1px solid currentColor;padding:13px 28px;font-size:12px;
+       text-transform:uppercase;letter-spacing:.2em;font-weight:400;transition:background .25s,color .25s}
+  .btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn-green{background:var(--green);border-color:var(--green);color:var(--paper)}
+  .btn-green:hover{background:var(--ink);border-color:var(--ink)}
 
-  header{position:sticky;top:0;z-index:10;background:rgba(246,243,238,.92);backdrop-filter:blur(6px);
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(245,242,236,.94);backdrop-filter:blur(8px);
          border-bottom:1px solid transparent;transition:border-color .3s}
   header.scrolled{border-color:var(--line)}
-  nav{display:flex;justify-content:space-between;align-items:center;height:64px;
-      font-size:12px;text-transform:uppercase;letter-spacing:.18em;font-weight:400}
-  nav .links{display:flex;gap:28px;align-items:center}
-  nav a:hover{opacity:.55}
-  .btn{display:inline-block;border:1px solid var(--ink);padding:12px 26px;font-size:12px;
-       text-transform:uppercase;letter-spacing:.18em;font-weight:400;transition:background .25s,color .25s}
-  .btn:hover{background:var(--ink);color:var(--paper)}
-  nav .btn{padding:9px 18px}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  nav .mark{width:118px;color:var(--ink);opacity:0;transition:opacity .3s}
+  header.scrolled nav .mark{opacity:1}
+  nav .links{display:flex;align-items:center;gap:30px;font-size:12px;text-transform:uppercase;letter-spacing:.2em;font-weight:400}
+  nav .links a:not(.btn):hover{color:var(--green)}
+  nav .links .lure-link{display:inline-flex;align-items:center;gap:8px}
+  nav .links .lure-link::before{content:"";width:6px;height:6px;border-radius:50%;background:#ff3b2f;box-shadow:0 0 8px #ff3b2f}
+  nav .btn{padding:10px 20px}
 
-  .hero{min-height:calc(100svh - 64px);display:flex;flex-direction:column;align-items:center;
-        justify-content:center;text-align:center;padding:40px 24px 80px}
-  .hero .logo{width:min(760px,88vw);height:auto;opacity:0;transform:translateY(8px);
-            animation:rise 1.2s .15s ease forwards}
-  .hero .tag{margin-top:40px;font-size:12px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);
-             opacity:0;animation:rise 1s .6s ease forwards}
-  .hero .btn{margin-top:36px;opacity:0;animation:rise 1s .9s ease forwards}
-  .hero .neon{animation:flicker 7s 2s infinite}
-  @keyframes flicker{0%,91%,95%,100%{opacity:1}92%{opacity:.55}93%{opacity:1}94%{opacity:.7}}
+  /* hero: Fishworks only */
+  .hero{min-height:calc(100svh - 68px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+        text-align:center;padding:40px 24px 90px}
+  .hero .logo{width:min(720px,86vw);color:var(--ink);opacity:0;transform:translateY(10px);animation:rise 1.1s .1s ease forwards}
+  .hero .label{margin-top:44px;opacity:0;animation:rise 1s .5s ease forwards}
+  .hero .btn{margin-top:30px;opacity:0;animation:rise 1s .8s ease forwards}
+  .hero .scroll{position:absolute;bottom:26px;left:50%;width:1px;height:42px;background:var(--line);overflow:hidden}
+  .hero .scroll::after{content:"";position:absolute;left:0;top:-42px;width:1px;height:42px;background:var(--ink);animation:drop 2.4s 1.5s infinite}
+  .hero{position:relative}
   @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes drop{to{top:42px}}
 
-  section{padding:110px 0;border-top:1px solid var(--line)}
-  .label{font-size:11px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-bottom:28px}
-  h2{font-weight:300;font-size:clamp(26px,3.6vw,40px);line-height:1.2;letter-spacing:-.01em;margin-bottom:18px}
-  .lede{max-width:520px;color:var(--muted)}
+  /* full bleed image */
+  .bleed{height:min(88vh,820px);overflow:hidden}
+  .bleed img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 
-  .reserve{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+  /* intro */
+  .intro{padding:120px 0;text-align:center}
+  .intro h1{font-size:clamp(34px,5vw,62px);line-height:1.08;max-width:15ch;margin:22px auto 0}
+  .intro p{max-width:520px;margin:26px auto 0;color:var(--muted)}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;padding-bottom:120px}
+  .gallery figure{overflow:hidden;background:#e9e4da}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+  .gallery figure:hover img{transform:scale(1.035)}
+  .g1{grid-column:1/6}.g2{grid-column:6/13}.g3{grid-column:1/5}.g4{grid-column:5/9}.g5{grid-column:9/13}
+  .g2 img{aspect-ratio:7/5}.g1 img{aspect-ratio:5/7}
+  .g3 img,.g4 img,.g5 img{aspect-ratio:4/5}
+  figcaption{font-size:11px;text-transform:uppercase;letter-spacing:.24em;color:var(--muted);padding:12px 2px 0;background:var(--paper)}
+
+  /* split */
+  .split{display:grid;grid-template-columns:1fr 1fr;min-height:640px;border-top:1px solid var(--line)}
+  .split .img{overflow:hidden}.split .img img{width:100%;height:100%;object-fit:cover}
+  .split .txt{display:flex;flex-direction:column;justify-content:center;padding:80px clamp(24px,6vw,96px)}
+  .split h2{font-size:clamp(30px,3.6vw,48px);line-height:1.1;margin:20px 0 18px}
+  .split p{color:var(--muted);max-width:420px}
+
+  /* reserve */
+  .reserve{padding:120px 0;border-top:1px solid var(--line)}
+  .reserve .grid{display:grid;grid-template-columns:1fr 1.35fr;gap:64px;align-items:start}
+  .reserve h2{font-size:clamp(32px,4vw,52px);line-height:1.08;margin:20px 0 18px}
+  .reserve p{color:var(--muted);max-width:380px}
   .widget{background:#fff;border:1px solid var(--line);min-height:480px;padding:8px}
 
-  .visit{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-  .visit h3{font-size:11px;text-transform:uppercase;letter-spacing:.3em;font-weight:400;margin-bottom:14px}
+  /* Lure doorway */
+  .door{position:relative;display:block;background:#0b0909;color:#d9d2c9;text-align:center;padding:130px 24px;overflow:hidden}
+  .door::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 55%,rgba(255,59,47,.14),transparent 70%);transition:opacity .5s;opacity:.6}
+  .door:hover::before{opacity:1}
+  .door .lure{position:relative;width:min(240px,52vw);margin:0 auto}
+  .door .label{position:relative;color:#8f857b;margin-top:26px}
+  .door .go{position:relative;display:inline-block;margin-top:26px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+            border-bottom:1px solid rgba(255,59,47,.6);padding-bottom:4px;color:#fff}
+
+  /* visit */
+  .visit{padding:110px 0}
+  .visit .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:36px}
+  .visit h3{font-size:11px;text-transform:uppercase;letter-spacing:.28em;font-weight:500;margin-bottom:12px}
   .visit p{color:var(--muted)}
-  .visit a{border-bottom:1px solid var(--line)}
-  .visit a:hover{border-color:var(--ink)}
+  .visit a{border-bottom:1px solid var(--line)}.visit a:hover{border-color:var(--ink)}
 
+  footer{background:var(--green);color:#cfd9d2;font-size:11px;text-transform:uppercase;letter-spacing:.2em}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:34px;padding-bottom:34px}
+  footer .mark{width:110px;color:#f5f2ec}
 
-  footer{background:var(--night);color:#8a837a;font-size:11px;text-transform:uppercase;letter-spacing:.2em;
-         border-top:1px solid #2a2724}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:28px;padding-bottom:28px}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
 
-  @media (max-width:800px){
-    nav .links a:not(.btn){display:none}
-    .reserve{grid-template-columns:1fr;gap:36px}
-    .visit{grid-template-columns:1fr;gap:32px}
-    section{padding:80px 0}
+  @media (max-width:860px){
+    nav .links a.hide-sm{display:none}
+    nav .links{gap:18px}
+    .gallery{grid-template-columns:1fr 1fr;gap:10px}
+    .g1,.g2,.g3,.g4,.g5{grid-column:auto}
+    .g1,.g2,.g5{grid-column:1/3}
+    .g1 img{aspect-ratio:7/5}
+    .g5 img{aspect-ratio:7/5}
+    .split{grid-template-columns:1fr}.split .img{height:70vw}
+    .reserve .grid{grid-template-columns:1fr;gap:36px}
+    .visit .cols{grid-template-columns:1fr;gap:30px}
+    .intro,.reserve,.visit{padding:80px 0}
   }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important;transform:none!important}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}
+    .hero .logo,.hero .label,.hero .btn,.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
 <header id="top">
   <nav class="wrap">
-    <a href="#top">Fishworks</a>
+    <a href="#top" class="mark" aria-label="Fishworks home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 810 908 343" role="img" aria-label="Fishworks"><path fill="currentColor" fill-rule="evenodd" d="M570.5,1146.0C548.3,1139.4 530.7,1118.3 528.0,1095.2C523.9,1061.2 542.3,1031.7 572.9,1023.1C577.0,1022.0 580.7,1020.7 581.2,1020.2C581.8,1019.6 582.3,979.4 582.4,925.9C582.7,829.9 582.8,826.4 586.7,821.1C591.1,815.3 601.3,814.6 605.1,820.0C607.5,823.4 608.8,846.4 609.6,897.0C610.2,940.4 611.2,957.3 613.1,959.6C614.6,961.5 617.7,960.8 622.8,957.6C646.5,942.7 667.5,960.1 680.9,1005.5C685.3,1020.2 684.4,1026.7 677.6,1030.9C666.8,1037.6 660.8,1032.9 652.0,1010.7C649.3,1003.8 647.0,997.6 647.0,997.1C647.0,993.3 641.5,985.0 639.1,985.0C635.6,985.0 621.1,1002.4 616.2,1012.5C611.6,1021.8 611.4,1025.4 615.3,1028.2C627.6,1037.2 636.6,1049.4 641.6,1064.0C644.3,1071.8 644.3,1097.0 641.7,1105.0C634.9,1125.7 620.9,1139.7 600.9,1146.0C592.6,1148.6 579.0,1148.6 570.5,1146.0ZM222.2,1145.8C215.4,1142.5 213.1,1127.5 213.0,1086.5C212.9,1040.8 211.6,1018.0 209.0,1012.5C206.1,1006.6 206.1,999.0 209.0,994.6C214.9,985.4 215.3,983.8 216.1,961.5C217.6,920.5 223.7,903.8 239.3,898.6C247.3,895.9 255.2,897.4 263.5,903.1C274.9,910.9 278.9,920.7 273.2,927.1C269.3,931.4 258.6,932.5 253.9,929.1C250.3,926.5 248.6,926.9 246.7,930.7C243.7,936.8 238.8,977.9 240.9,980.3C241.6,981.2 245.3,982.0 250.8,982.4C270.1,984.0 273.6,985.8 272.7,993.6C271.7,1002.6 266.4,1006.4 252.0,1008.6C246.2,1009.5 243.1,1010.5 242.3,1011.6C241.3,1013.0 241.0,1023.9 241.0,1059.9C240.9,1116.2 240.0,1135.0 237.2,1140.7C234.2,1146.4 228.0,1148.6 222.2,1145.8ZM849.4,1144.2C847.7,1141.8 847.5,1138.9 847.2,1112.5C847.0,1096.5 847.4,1072.0 847.9,1058.0C848.5,1044.0 849.4,1020.4 850.0,1005.5C850.7,989.8 851.6,977.6 852.2,976.2C854.3,972.0 860.6,972.0 865.3,976.4C869.6,980.4 870.3,985.4 870.9,1015.4C871.5,1045.2 871.8,1046.4 876.2,1041.8C892.3,1024.9 901.3,1015.9 905.0,1012.9C915.0,1005.0 920.7,1005.2 922.3,1013.6C923.4,1019.7 919.0,1026.6 903.2,1043.7C888.1,1060.1 882.2,1068.8 883.4,1073.5C885.7,1082.4 902.1,1102.5 925.4,1124.9C929.2,1128.5 932.0,1132.1 932.1,1133.4C932.5,1140.8 929.8,1144.7 923.7,1145.7C916.1,1146.9 907.5,1139.9 892.8,1120.5C872.0,1093.1 869.2,1092.5 867.9,1115.8C866.9,1133.7 864.0,1142.4 858.0,1145.5C853.8,1147.7 851.5,1147.4 849.4,1144.2ZM418.1,1142.9C411.1,1140.4 405.9,1136.4 386.2,1118.1C377.2,1109.8 369.0,1102.5 367.9,1101.9C365.1,1100.4 362.2,1101.7 360.4,1105.2C357.7,1110.5 332.5,1135.4 326.8,1138.6C319.7,1142.4 307.9,1142.7 301.3,1139.2C288.4,1132.4 281.1,1119.1 279.0,1098.3C277.7,1086.0 277.7,1043.2 278.9,1032.5C279.7,1025.4 280.2,1024.2 282.9,1021.8C287.4,1017.8 294.6,1017.8 299.1,1021.8C303.5,1025.7 303.9,1028.8 304.9,1066.0C305.9,1099.5 306.5,1104.2 310.7,1110.7C313.0,1114.1 315.2,1113.5 320.1,1108.2C327.1,1100.7 343.0,1078.7 343.0,1076.6C343.0,1075.3 352.5,1060.1 355.8,1056.1C365.8,1043.9 379.7,1047.3 385.9,1063.6C392.5,1080.9 396.0,1086.8 405.8,1097.1C421.0,1113.2 430.0,1117.0 436.1,1109.7C442.2,1102.5 446.9,1080.4 447.0,1059.2C447.0,1044.9 448.6,1034.3 451.1,1030.7C454.2,1026.4 453.2,1025.2 444.1,1021.5C424.0,1013.3 416.1,1007.0 415.3,998.6C414.4,989.7 419.4,986.1 430.4,987.8C437.0,988.8 442.1,990.2 472.4,999.4C493.4,1005.7 502.0,1005.3 502.0,997.7C502.0,990.7 493.7,977.1 477.3,957.2C462.7,939.4 457.1,927.5 457.0,913.9C457.0,899.7 464.7,888.7 478.5,883.5C485.4,880.9 505.9,880.8 514.2,883.4C524.7,886.6 528.9,895.4 525.9,907.6C523.6,916.5 515.9,917.3 504.4,910.0C496.9,905.3 493.4,905.0 489.1,908.6C482.4,914.2 486.5,924.6 504.0,946.5C523.7,971.3 531.0,986.2 531.0,1001.4C531.0,1010.5 528.2,1016.6 520.9,1023.7C511.8,1032.5 509.5,1032.8 477.0,1030.7C472.9,1030.5 472.9,1030.5 475.0,1046.0C478.1,1069.2 473.0,1103.2 463.7,1122.0C459.3,1130.8 449.2,1141.0 442.5,1143.3C435.9,1145.6 425.1,1145.4 418.1,1142.9ZM706.3,1136.0C698.8,1131.5 696.0,1118.6 696.0,1088.7C696.0,1058.9 697.8,1051.7 706.5,1046.9C711.6,1044.1 716.6,1039.5 719.6,1034.7C730.5,1017.8 760.7,997.0 774.5,997.0C785.6,997.0 795.7,1007.7 792.8,1016.2C791.2,1021.1 788.8,1022.8 781.3,1024.5C771.9,1026.6 763.8,1032.1 751.0,1045.0C732.2,1063.9 727.3,1076.5 725.5,1110.5C724.7,1127.2 723.3,1134.7 720.7,1136.5C717.6,1138.6 710.1,1138.4 706.3,1136.0ZM1050.5,1136.5C1016.7,1131.7 987.0,1116.4 987.0,1103.7C987.0,1099.3 990.6,1094.0 993.8,1093.8C1002.6,1093.3 1012.6,1095.6 1044.5,1105.5C1060.4,1110.5 1070.2,1110.9 1073.3,1106.8C1075.3,1104.2 1075.3,1104.0 1073.5,1099.3C1070.6,1091.8 1061.3,1077.4 1052.6,1067.0C1040.7,1052.9 1035.7,1045.0 1030.9,1033.0C1028.6,1027.2 1029.1,1010.4 1031.7,1005.5C1038.6,992.5 1048.1,988.0 1068.5,988.0C1092.7,988.0 1100.2,993.4 1098.7,1009.9C1097.4,1023.1 1089.8,1024.5 1073.5,1014.5C1068.1,1011.1 1064.6,1011.3 1060.8,1015.0C1054.9,1021.0 1058.1,1028.7 1076.9,1053.7C1098.9,1082.9 1103.5,1092.7 1102.8,1108.5C1102.4,1116.8 1102.1,1117.9 1098.9,1123.0C1094.8,1129.4 1090.2,1133.5 1084.5,1136.1C1079.7,1138.3 1064.7,1138.5 1050.5,1136.5ZM598.4,1115.2C608.9,1109.5 614.3,1099.2 614.4,1085.0C614.4,1073.9 612.5,1069.0 605.1,1060.8C593.7,1048.1 579.2,1047.7 567.1,1059.8C559.8,1067.1 557.8,1072.3 557.8,1083.6C557.7,1110.2 578.1,1126.1 598.4,1115.2ZM333.3,1041.0C325.9,1037.9 324.8,1020.2 329.7,981.1C331.7,964.9 332.9,962.9 340.3,962.8C346.0,962.7 350.0,965.2 351.2,969.6C352.3,973.4 352.7,1022.9 351.7,1030.0C350.5,1038.2 347.7,1041.2 340.9,1041.6C337.9,1041.8 334.5,1041.6 333.3,1041.0ZM335.2,909.0C326.5,903.6 327.5,890.7 337.0,885.7C344.9,881.6 358.9,885.4 362.2,892.5C366.9,902.9 346.0,915.6 335.2,909.0Z"/></svg></a>
     <div class="links">
-      <a href="#visit">Visit</a>
+      <a href="#food" class="hide-sm">Food</a>
+      <a href="#visit" class="hide-sm">Visit</a>
+      <a href="lure.html" class="lure-link">Lure</a>
       <a href="#reserve" class="btn">Reserve</a>
     </div>
   </nav>
 </header>
 
 <main>
-  <div class="hero">
-    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="136 746 1709 471" role="img" aria-label="Fishworks Lure">
-<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-<feGaussianBlur in="SourceGraphic" stdDeviation="14" result="b1"/>
-<feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b2"/>
-<feMerge><feMergeNode in="b1"/><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
-</filter></defs>
-<path fill="#1f1f1f" fill-rule="evenodd" d="M570.5,1146.0C548.3,1139.4 530.7,1118.3 528.0,1095.2C523.9,1061.2 542.3,1031.7 572.9,1023.1C577.0,1022.0 580.7,1020.7 581.2,1020.2C581.8,1019.6 582.3,979.4 582.4,925.9C582.7,829.9 582.8,826.4 586.7,821.1C591.1,815.3 601.3,814.6 605.1,820.0C607.5,823.4 608.8,846.4 609.6,897.0C610.2,940.4 611.2,957.3 613.1,959.6C614.6,961.5 617.7,960.8 622.8,957.6C646.5,942.7 667.5,960.1 680.9,1005.5C685.3,1020.2 684.4,1026.7 677.6,1030.9C666.8,1037.6 660.8,1032.9 652.0,1010.7C649.3,1003.8 647.0,997.6 647.0,997.1C647.0,993.3 641.5,985.0 639.1,985.0C635.6,985.0 621.1,1002.4 616.2,1012.5C611.6,1021.8 611.4,1025.4 615.3,1028.2C627.6,1037.2 636.6,1049.4 641.6,1064.0C644.3,1071.8 644.3,1097.0 641.7,1105.0C634.9,1125.7 620.9,1139.7 600.9,1146.0C592.6,1148.6 579.0,1148.6 570.5,1146.0ZM222.2,1145.8C215.4,1142.5 213.1,1127.5 213.0,1086.5C212.9,1040.8 211.6,1018.0 209.0,1012.5C206.1,1006.6 206.1,999.0 209.0,994.6C214.9,985.4 215.3,983.8 216.1,961.5C217.6,920.5 223.7,903.8 239.3,898.6C247.3,895.9 255.2,897.4 263.5,903.1C274.9,910.9 278.9,920.7 273.2,927.1C269.3,931.4 258.6,932.5 253.9,929.1C250.3,926.5 248.6,926.9 246.7,930.7C243.7,936.8 238.8,977.9 240.9,980.3C241.6,981.2 245.3,982.0 250.8,982.4C270.1,984.0 273.6,985.8 272.7,993.6C271.7,1002.6 266.4,1006.4 252.0,1008.6C246.2,1009.5 243.1,1010.5 242.3,1011.6C241.3,1013.0 241.0,1023.9 241.0,1059.9C240.9,1116.2 240.0,1135.0 237.2,1140.7C234.2,1146.4 228.0,1148.6 222.2,1145.8ZM849.4,1144.2C847.7,1141.8 847.5,1138.9 847.2,1112.5C847.0,1096.5 847.4,1072.0 847.9,1058.0C848.5,1044.0 849.4,1020.4 850.0,1005.5C850.7,989.8 851.6,977.6 852.2,976.2C854.3,972.0 860.6,972.0 865.3,976.4C869.6,980.4 870.3,985.4 870.9,1015.4C871.5,1045.2 871.8,1046.4 876.2,1041.8C892.3,1024.9 901.3,1015.9 905.0,1012.9C915.0,1005.0 920.7,1005.2 922.3,1013.6C923.4,1019.7 919.0,1026.6 903.2,1043.7C888.1,1060.1 882.2,1068.8 883.4,1073.5C885.7,1082.4 902.1,1102.5 925.4,1124.9C929.2,1128.5 932.0,1132.1 932.1,1133.4C932.5,1140.8 929.8,1144.7 923.7,1145.7C916.1,1146.9 907.5,1139.9 892.8,1120.5C872.0,1093.1 869.2,1092.5 867.9,1115.8C866.9,1133.7 864.0,1142.4 858.0,1145.5C853.8,1147.7 851.5,1147.4 849.4,1144.2ZM418.1,1142.9C411.1,1140.4 405.9,1136.4 386.2,1118.1C377.2,1109.8 369.0,1102.5 367.9,1101.9C365.1,1100.4 362.2,1101.7 360.4,1105.2C357.7,1110.5 332.5,1135.4 326.8,1138.6C319.7,1142.4 307.9,1142.7 301.3,1139.2C288.4,1132.4 281.1,1119.1 279.0,1098.3C277.7,1086.0 277.7,1043.2 278.9,1032.5C279.7,1025.4 280.2,1024.2 282.9,1021.8C287.4,1017.8 294.6,1017.8 299.1,1021.8C303.5,1025.7 303.9,1028.8 304.9,1066.0C305.9,1099.5 306.5,1104.2 310.7,1110.7C313.0,1114.1 315.2,1113.5 320.1,1108.2C327.1,1100.7 343.0,1078.7 343.0,1076.6C343.0,1075.3 352.5,1060.1 355.8,1056.1C365.8,1043.9 379.7,1047.3 385.9,1063.6C392.5,1080.9 396.0,1086.8 405.8,1097.1C421.0,1113.2 430.0,1117.0 436.1,1109.7C442.2,1102.5 446.9,1080.4 447.0,1059.2C447.0,1044.9 448.6,1034.3 451.1,1030.7C454.2,1026.4 453.2,1025.2 444.1,1021.5C424.0,1013.3 416.1,1007.0 415.3,998.6C414.4,989.7 419.4,986.1 430.4,987.8C437.0,988.8 442.1,990.2 472.4,999.4C493.4,1005.7 502.0,1005.3 502.0,997.7C502.0,990.7 493.7,977.1 477.3,957.2C462.7,939.4 457.1,927.5 457.0,913.9C457.0,899.7 464.7,888.7 478.5,883.5C485.4,880.9 505.9,880.8 514.2,883.4C524.7,886.6 528.9,895.4 525.9,907.6C523.6,916.5 515.9,917.3 504.4,910.0C496.9,905.3 493.4,905.0 489.1,908.6C482.4,914.2 486.5,924.6 504.0,946.5C523.7,971.3 531.0,986.2 531.0,1001.4C531.0,1010.5 528.2,1016.6 520.9,1023.7C511.8,1032.5 509.5,1032.8 477.0,1030.7C472.9,1030.5 472.9,1030.5 475.0,1046.0C478.1,1069.2 473.0,1103.2 463.7,1122.0C459.3,1130.8 449.2,1141.0 442.5,1143.3C435.9,1145.6 425.1,1145.4 418.1,1142.9ZM706.3,1136.0C698.8,1131.5 696.0,1118.6 696.0,1088.7C696.0,1058.9 697.8,1051.7 706.5,1046.9C711.6,1044.1 716.6,1039.5 719.6,1034.7C730.5,1017.8 760.7,997.0 774.5,997.0C785.6,997.0 795.7,1007.7 792.8,1016.2C791.2,1021.1 788.8,1022.8 781.3,1024.5C771.9,1026.6 763.8,1032.1 751.0,1045.0C732.2,1063.9 727.3,1076.5 725.5,1110.5C724.7,1127.2 723.3,1134.7 720.7,1136.5C717.6,1138.6 710.1,1138.4 706.3,1136.0ZM1050.5,1136.5C1016.7,1131.7 987.0,1116.4 987.0,1103.7C987.0,1099.3 990.6,1094.0 993.8,1093.8C1002.6,1093.3 1012.6,1095.6 1044.5,1105.5C1060.4,1110.5 1070.2,1110.9 1073.3,1106.8C1075.3,1104.2 1075.3,1104.0 1073.5,1099.3C1070.6,1091.8 1061.3,1077.4 1052.6,1067.0C1040.7,1052.9 1035.7,1045.0 1030.9,1033.0C1028.6,1027.2 1029.1,1010.4 1031.7,1005.5C1038.6,992.5 1048.1,988.0 1068.5,988.0C1092.7,988.0 1100.2,993.4 1098.7,1009.9C1097.4,1023.1 1089.8,1024.5 1073.5,1014.5C1068.1,1011.1 1064.6,1011.3 1060.8,1015.0C1054.9,1021.0 1058.1,1028.7 1076.9,1053.7C1098.9,1082.9 1103.5,1092.7 1102.8,1108.5C1102.4,1116.8 1102.1,1117.9 1098.9,1123.0C1094.8,1129.4 1090.2,1133.5 1084.5,1136.1C1079.7,1138.3 1064.7,1138.5 1050.5,1136.5ZM598.4,1115.2C608.9,1109.5 614.3,1099.2 614.4,1085.0C614.4,1073.9 612.5,1069.0 605.1,1060.8C593.7,1048.1 579.2,1047.7 567.1,1059.8C559.8,1067.1 557.8,1072.3 557.8,1083.6C557.7,1110.2 578.1,1126.1 598.4,1115.2ZM333.3,1041.0C325.9,1037.9 324.8,1020.2 329.7,981.1C331.7,964.9 332.9,962.9 340.3,962.8C346.0,962.7 350.0,965.2 351.2,969.6C352.3,973.4 352.7,1022.9 351.7,1030.0C350.5,1038.2 347.7,1041.2 340.9,1041.6C337.9,1041.8 334.5,1041.6 333.3,1041.0ZM335.2,909.0C326.5,903.6 327.5,890.7 337.0,885.7C344.9,881.6 358.9,885.4 362.2,892.5C366.9,902.9 346.0,915.6 335.2,909.0Z"/>
-<g class="neon" filter="url(#glow)"><path fill="#e8392f" fill-rule="evenodd" d="M1452.0,1134.6C1435.2,1131.0 1423.1,1113.4 1414.7,1080.4C1406.5,1048.5 1405.4,1018.7 1410.6,972.0C1414.6,936.1 1423.4,916.4 1436.4,914.3C1453.8,911.5 1460.5,936.5 1456.1,988.5C1452.6,1030.0 1446.2,1052.8 1431.9,1075.6C1427.2,1083.0 1427.2,1083.9 1431.0,1095.0C1442.5,1128.6 1460.8,1133.3 1485.0,1109.1C1498.3,1095.7 1505.4,1085.6 1506.9,1078.0C1509.0,1067.6 1511.5,1064.6 1516.1,1067.1C1518.9,1068.6 1519.3,1071.5 1518.0,1081.9C1515.9,1098.5 1519.1,1108.0 1526.7,1108.0C1531.3,1108.0 1539.6,1099.8 1544.0,1090.9C1548.0,1082.9 1550.6,1080.0 1554.0,1080.0C1559.9,1080.0 1563.0,1085.6 1564.5,1099.4C1565.2,1105.3 1567.6,1111.9 1570.5,1115.5C1572.6,1118.2 1579.9,1118.1 1586.2,1115.3C1594.1,1111.7 1609.6,1094.7 1615.4,1083.1C1620.4,1073.2 1621.6,1067.2 1622.9,1047.3C1623.4,1039.3 1624.2,1033.4 1625.0,1032.5C1626.7,1030.4 1631.2,1030.6 1640.0,1033.1C1649.1,1035.6 1658.6,1035.3 1667.5,1032.1C1675.0,1029.4 1677.6,1029.4 1679.1,1032.2C1680.3,1034.5 1679.8,1043.3 1678.0,1049.9C1671.6,1074.2 1673.5,1097.6 1682.6,1106.7C1686.2,1110.3 1696.3,1106.6 1697.6,1101.3C1698.0,1100.0 1697.3,1096.4 1696.2,1093.2C1690.8,1078.1 1693.5,1060.1 1702.6,1050.0C1707.9,1044.2 1712.6,1042.0 1720.0,1042.0C1726.9,1042.0 1729.0,1042.8 1733.8,1047.4C1744.5,1057.4 1741.2,1073.4 1723.6,1096.8C1720.5,1101.0 1719.8,1102.5 1720.7,1103.8C1722.8,1107.2 1729.9,1111.0 1737.0,1112.5C1746.2,1114.4 1753.4,1112.9 1761.6,1107.3C1770.5,1101.2 1771.6,1100.7 1774.0,1102.2C1778.4,1105.0 1775.3,1110.3 1765.3,1117.2C1750.3,1127.5 1733.3,1126.3 1711.2,1113.4C1708.1,1111.5 1707.9,1111.5 1704.8,1113.4C1696.6,1118.1 1693.5,1119.3 1689.1,1119.8C1676.7,1121.0 1666.9,1108.6 1663.5,1087.5C1661.9,1077.5 1661.8,1078.8 1665.7,1049.2C1666.3,1044.8 1666.3,1044.8 1660.4,1045.6C1653.4,1046.5 1646.2,1046.4 1641.7,1045.2C1635.5,1043.6 1634.0,1045.6 1634.0,1055.0C1634.0,1062.2 1630.2,1077.9 1626.6,1085.4C1622.3,1094.4 1611.2,1108.8 1603.3,1115.9C1586.9,1130.6 1568.6,1132.3 1559.6,1120.1C1558.2,1118.2 1556.3,1114.6 1555.4,1112.1C1552.5,1104.3 1551.9,1104.2 1546.4,1109.7C1537.8,1118.2 1527.3,1121.3 1518.7,1117.7C1515.5,1116.3 1508.0,1108.9 1508.0,1107.0C1508.0,1104.3 1504.0,1106.6 1498.0,1112.8C1485.3,1125.8 1476.0,1131.8 1465.0,1134.4C1461.4,1135.3 1458.3,1135.9 1458.0,1135.9C1457.7,1135.9 1455.0,1135.3 1452.0,1134.6ZM1724.4,1074.0C1730.9,1061.8 1729.4,1053.0 1720.8,1053.0C1713.0,1053.0 1708.5,1058.2 1705.9,1070.1C1704.5,1077.0 1706.9,1089.6 1709.8,1090.3C1712.3,1090.9 1719.8,1082.5 1724.4,1074.0ZM1430.6,1052.2C1438.1,1036.5 1440.5,1027.4 1443.6,1004.0C1446.2,984.5 1446.3,940.9 1443.7,932.8C1438.8,916.9 1430.2,928.5 1424.2,959.1C1418.3,988.6 1417.5,1043.1 1422.6,1060.2C1423.6,1063.5 1426.7,1060.3 1430.6,1052.2Z"/></g>
-</svg>
-    <p class="tag">Opening soon &nbsp;·&nbsp; St Kilda</p>
+  <section class="hero">
+    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 810 908 343" role="img" aria-label="Fishworks"><path fill="currentColor" fill-rule="evenodd" d="M570.5,1146.0C548.3,1139.4 530.7,1118.3 528.0,1095.2C523.9,1061.2 542.3,1031.7 572.9,1023.1C577.0,1022.0 580.7,1020.7 581.2,1020.2C581.8,1019.6 582.3,979.4 582.4,925.9C582.7,829.9 582.8,826.4 586.7,821.1C591.1,815.3 601.3,814.6 605.1,820.0C607.5,823.4 608.8,846.4 609.6,897.0C610.2,940.4 611.2,957.3 613.1,959.6C614.6,961.5 617.7,960.8 622.8,957.6C646.5,942.7 667.5,960.1 680.9,1005.5C685.3,1020.2 684.4,1026.7 677.6,1030.9C666.8,1037.6 660.8,1032.9 652.0,1010.7C649.3,1003.8 647.0,997.6 647.0,997.1C647.0,993.3 641.5,985.0 639.1,985.0C635.6,985.0 621.1,1002.4 616.2,1012.5C611.6,1021.8 611.4,1025.4 615.3,1028.2C627.6,1037.2 636.6,1049.4 641.6,1064.0C644.3,1071.8 644.3,1097.0 641.7,1105.0C634.9,1125.7 620.9,1139.7 600.9,1146.0C592.6,1148.6 579.0,1148.6 570.5,1146.0ZM222.2,1145.8C215.4,1142.5 213.1,1127.5 213.0,1086.5C212.9,1040.8 211.6,1018.0 209.0,1012.5C206.1,1006.6 206.1,999.0 209.0,994.6C214.9,985.4 215.3,983.8 216.1,961.5C217.6,920.5 223.7,903.8 239.3,898.6C247.3,895.9 255.2,897.4 263.5,903.1C274.9,910.9 278.9,920.7 273.2,927.1C269.3,931.4 258.6,932.5 253.9,929.1C250.3,926.5 248.6,926.9 246.7,930.7C243.7,936.8 238.8,977.9 240.9,980.3C241.6,981.2 245.3,982.0 250.8,982.4C270.1,984.0 273.6,985.8 272.7,993.6C271.7,1002.6 266.4,1006.4 252.0,1008.6C246.2,1009.5 243.1,1010.5 242.3,1011.6C241.3,1013.0 241.0,1023.9 241.0,1059.9C240.9,1116.2 240.0,1135.0 237.2,1140.7C234.2,1146.4 228.0,1148.6 222.2,1145.8ZM849.4,1144.2C847.7,1141.8 847.5,1138.9 847.2,1112.5C847.0,1096.5 847.4,1072.0 847.9,1058.0C848.5,1044.0 849.4,1020.4 850.0,1005.5C850.7,989.8 851.6,977.6 852.2,976.2C854.3,972.0 860.6,972.0 865.3,976.4C869.6,980.4 870.3,985.4 870.9,1015.4C871.5,1045.2 871.8,1046.4 876.2,1041.8C892.3,1024.9 901.3,1015.9 905.0,1012.9C915.0,1005.0 920.7,1005.2 922.3,1013.6C923.4,1019.7 919.0,1026.6 903.2,1043.7C888.1,1060.1 882.2,1068.8 883.4,1073.5C885.7,1082.4 902.1,1102.5 925.4,1124.9C929.2,1128.5 932.0,1132.1 932.1,1133.4C932.5,1140.8 929.8,1144.7 923.7,1145.7C916.1,1146.9 907.5,1139.9 892.8,1120.5C872.0,1093.1 869.2,1092.5 867.9,1115.8C866.9,1133.7 864.0,1142.4 858.0,1145.5C853.8,1147.7 851.5,1147.4 849.4,1144.2ZM418.1,1142.9C411.1,1140.4 405.9,1136.4 386.2,1118.1C377.2,1109.8 369.0,1102.5 367.9,1101.9C365.1,1100.4 362.2,1101.7 360.4,1105.2C357.7,1110.5 332.5,1135.4 326.8,1138.6C319.7,1142.4 307.9,1142.7 301.3,1139.2C288.4,1132.4 281.1,1119.1 279.0,1098.3C277.7,1086.0 277.7,1043.2 278.9,1032.5C279.7,1025.4 280.2,1024.2 282.9,1021.8C287.4,1017.8 294.6,1017.8 299.1,1021.8C303.5,1025.7 303.9,1028.8 304.9,1066.0C305.9,1099.5 306.5,1104.2 310.7,1110.7C313.0,1114.1 315.2,1113.5 320.1,1108.2C327.1,1100.7 343.0,1078.7 343.0,1076.6C343.0,1075.3 352.5,1060.1 355.8,1056.1C365.8,1043.9 379.7,1047.3 385.9,1063.6C392.5,1080.9 396.0,1086.8 405.8,1097.1C421.0,1113.2 430.0,1117.0 436.1,1109.7C442.2,1102.5 446.9,1080.4 447.0,1059.2C447.0,1044.9 448.6,1034.3 451.1,1030.7C454.2,1026.4 453.2,1025.2 444.1,1021.5C424.0,1013.3 416.1,1007.0 415.3,998.6C414.4,989.7 419.4,986.1 430.4,987.8C437.0,988.8 442.1,990.2 472.4,999.4C493.4,1005.7 502.0,1005.3 502.0,997.7C502.0,990.7 493.7,977.1 477.3,957.2C462.7,939.4 457.1,927.5 457.0,913.9C457.0,899.7 464.7,888.7 478.5,883.5C485.4,880.9 505.9,880.8 514.2,883.4C524.7,886.6 528.9,895.4 525.9,907.6C523.6,916.5 515.9,917.3 504.4,910.0C496.9,905.3 493.4,905.0 489.1,908.6C482.4,914.2 486.5,924.6 504.0,946.5C523.7,971.3 531.0,986.2 531.0,1001.4C531.0,1010.5 528.2,1016.6 520.9,1023.7C511.8,1032.5 509.5,1032.8 477.0,1030.7C472.9,1030.5 472.9,1030.5 475.0,1046.0C478.1,1069.2 473.0,1103.2 463.7,1122.0C459.3,1130.8 449.2,1141.0 442.5,1143.3C435.9,1145.6 425.1,1145.4 418.1,1142.9ZM706.3,1136.0C698.8,1131.5 696.0,1118.6 696.0,1088.7C696.0,1058.9 697.8,1051.7 706.5,1046.9C711.6,1044.1 716.6,1039.5 719.6,1034.7C730.5,1017.8 760.7,997.0 774.5,997.0C785.6,997.0 795.7,1007.7 792.8,1016.2C791.2,1021.1 788.8,1022.8 781.3,1024.5C771.9,1026.6 763.8,1032.1 751.0,1045.0C732.2,1063.9 727.3,1076.5 725.5,1110.5C724.7,1127.2 723.3,1134.7 720.7,1136.5C717.6,1138.6 710.1,1138.4 706.3,1136.0ZM1050.5,1136.5C1016.7,1131.7 987.0,1116.4 987.0,1103.7C987.0,1099.3 990.6,1094.0 993.8,1093.8C1002.6,1093.3 1012.6,1095.6 1044.5,1105.5C1060.4,1110.5 1070.2,1110.9 1073.3,1106.8C1075.3,1104.2 1075.3,1104.0 1073.5,1099.3C1070.6,1091.8 1061.3,1077.4 1052.6,1067.0C1040.7,1052.9 1035.7,1045.0 1030.9,1033.0C1028.6,1027.2 1029.1,1010.4 1031.7,1005.5C1038.6,992.5 1048.1,988.0 1068.5,988.0C1092.7,988.0 1100.2,993.4 1098.7,1009.9C1097.4,1023.1 1089.8,1024.5 1073.5,1014.5C1068.1,1011.1 1064.6,1011.3 1060.8,1015.0C1054.9,1021.0 1058.1,1028.7 1076.9,1053.7C1098.9,1082.9 1103.5,1092.7 1102.8,1108.5C1102.4,1116.8 1102.1,1117.9 1098.9,1123.0C1094.8,1129.4 1090.2,1133.5 1084.5,1136.1C1079.7,1138.3 1064.7,1138.5 1050.5,1136.5ZM598.4,1115.2C608.9,1109.5 614.3,1099.2 614.4,1085.0C614.4,1073.9 612.5,1069.0 605.1,1060.8C593.7,1048.1 579.2,1047.7 567.1,1059.8C559.8,1067.1 557.8,1072.3 557.8,1083.6C557.7,1110.2 578.1,1126.1 598.4,1115.2ZM333.3,1041.0C325.9,1037.9 324.8,1020.2 329.7,981.1C331.7,964.9 332.9,962.9 340.3,962.8C346.0,962.7 350.0,965.2 351.2,969.6C352.3,973.4 352.7,1022.9 351.7,1030.0C350.5,1038.2 347.7,1041.2 340.9,1041.6C337.9,1041.8 334.5,1041.6 333.3,1041.0ZM335.2,909.0C326.5,903.6 327.5,890.7 337.0,885.7C344.9,881.6 358.9,885.4 362.2,892.5C366.9,902.9 346.0,915.6 335.2,909.0Z"/></svg></div>
+    <p class="label">31 Fitzroy Street &nbsp;·&nbsp; St Kilda</p>
     <a href="#reserve" class="btn">Book a table</a>
+    <span class="scroll" aria-hidden="true"></span>
+  </section>
+
+  <div class="bleed">
+    <img src="img/spread-1400.jpg" srcset="img/spread-800.jpg 800w, img/spread-1400.jpg 1400w" sizes="100vw"
+         alt="Whole fish, crumbed fish and steak on green-rimmed plates across a marble table" width="1400" height="1750">
   </div>
 
-  <section id="reserve">
-    <div class="wrap reserve">
+  <section class="intro wrap" id="food">
+    <p class="label reveal">Fishworks</p>
+    <h1 class="serif reveal">Oysters on ice, whole fish off the grill.</h1>
+    <p class="reveal">Seafood cooked simply and served to share, on Fitzroy Street in St Kilda.</p>
+  </section>
+
+  <section class="wrap gallery">
+    <figure class="g1 reveal"><img loading="lazy" src="img/oysters-800.jpg" srcset="img/oysters-800.jpg 800w, img/oysters-1400.jpg 1400w" sizes="(max-width:860px) 50vw, 40vw" alt="A dozen oysters with mignonette and lemon on ice"><figcaption>Oysters</figcaption></figure>
+    <figure class="g2 reveal"><img loading="lazy" src="img/crayfish-1400.jpg" srcset="img/crayfish-800.jpg 800w, img/crayfish-1400.jpg 1400w" sizes="(max-width:860px) 100vw, 58vw" alt="Grilled crayfish with herb butter, fries and rocket"><figcaption>Crayfish</figcaption></figure>
+    <figure class="g3 reveal"><img loading="lazy" src="img/prawns-800.jpg" srcset="img/prawns-800.jpg 800w, img/prawns-1400.jpg 1400w" sizes="(max-width:860px) 50vw, 33vw" alt="Grilled king prawns with garlic, chilli and lemon"><figcaption>Prawns</figcaption></figure>
+    <figure class="g4 reveal"><img loading="lazy" src="img/scallops-800.jpg" srcset="img/scallops-800.jpg 800w, img/scallops-1400.jpg 1400w" sizes="(max-width:860px) 50vw, 33vw" alt="Baked scallops in the shell with crumb and chilli"><figcaption>Scallops</figcaption></figure>
+    <figure class="g5 reveal"><img loading="lazy" src="img/steak-800.jpg" srcset="img/steak-800.jpg 800w, img/steak-1400.jpg 1400w" sizes="(max-width:860px) 100vw, 33vw" alt="Grilled steak on the bone with broccolini"><figcaption>From the grill</figcaption></figure>
+  </section>
+
+  <section class="split">
+    <div class="img"><img loading="lazy" src="img/whole-fish-1400.jpg" srcset="img/whole-fish-800.jpg 800w, img/whole-fish-1400.jpg 1400w" sizes="(max-width:860px) 100vw, 50vw" alt="Whole grilled fish with chilli, coriander and lemon"></div>
+    <div class="txt">
+      <p class="label reveal">The table</p>
+      <h2 class="serif reveal">Bring people.<br>Order the whole fish.</h2>
+      <p class="reveal">Plates made for the middle of the table, and a wine list to go with them.</p>
+      <p class="reveal" style="margin-top:30px"><a href="#reserve" class="btn btn-green">Reserve</a></p>
+    </div>
+  </section>
+
+  <section class="reserve" id="reserve">
+    <div class="wrap grid">
       <div>
         <p class="label">Reservations</p>
-        <h2>Be among the first<br>to sit with us.</h2>
-        <p class="lede">Bookings are now open. Choose a date and time and we’ll see you on Fitzroy Street.</p>
+        <h2 class="serif">Book a table.</h2>
+        <p>Choose a date and time below. For larger groups, get in touch and we’ll look after you.</p>
       </div>
       <div class="widget">
         <div class='obee-widget' account="fishworks" hide-header='false' min-height='450' add-height='50' scrolltop='true' widget-type='booking'></div>
@@ -114,40 +193,37 @@
     </div>
   </section>
 
-  <section id="visit">
-    <div class="wrap">
-      <p class="label">Visit</p>
-      <div class="visit">
-        <div>
-          <h3>Address</h3>
-          <p><a href="https://maps.google.com/?q=31+Fitzroy+Street,+St+Kilda+VIC+3182" target="_blank" rel="noopener">31 Fitzroy Street<br>St Kilda VIC 3182</a></p>
-        </div>
-        <div>
-          <h3>Hours</h3>
-          <p>Opening hours<br>coming soon</p>
-        </div>
-        <div>
-          <h3>Bookings</h3>
-          <p><a href="https://bookings.obeeapp.com/fishworks" target="_blank" rel="noopener">Reserve online</a></p>
-        </div>
-      </div>
+  <a class="door" href="lure.html" aria-label="Enter Lure">
+    <div class="lure"><svg xmlns="http://www.w3.org/2000/svg" viewBox="1347 854 488 341" role="img" aria-label="Lure"><defs><filter id="g" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceGraphic" stdDeviation="16" result="a"/><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/><feMerge><feMergeNode in="a"/><feMergeNode in="a"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#g)"><path fill="#ff3b2f" fill-rule="evenodd" d="M1452.0,1134.6C1435.2,1131.0 1423.1,1113.4 1414.7,1080.4C1406.5,1048.5 1405.4,1018.7 1410.6,972.0C1414.6,936.1 1423.4,916.4 1436.4,914.3C1453.8,911.5 1460.5,936.5 1456.1,988.5C1452.6,1030.0 1446.2,1052.8 1431.9,1075.6C1427.2,1083.0 1427.2,1083.9 1431.0,1095.0C1442.5,1128.6 1460.8,1133.3 1485.0,1109.1C1498.3,1095.7 1505.4,1085.6 1506.9,1078.0C1509.0,1067.6 1511.5,1064.6 1516.1,1067.1C1518.9,1068.6 1519.3,1071.5 1518.0,1081.9C1515.9,1098.5 1519.1,1108.0 1526.7,1108.0C1531.3,1108.0 1539.6,1099.8 1544.0,1090.9C1548.0,1082.9 1550.6,1080.0 1554.0,1080.0C1559.9,1080.0 1563.0,1085.6 1564.5,1099.4C1565.2,1105.3 1567.6,1111.9 1570.5,1115.5C1572.6,1118.2 1579.9,1118.1 1586.2,1115.3C1594.1,1111.7 1609.6,1094.7 1615.4,1083.1C1620.4,1073.2 1621.6,1067.2 1622.9,1047.3C1623.4,1039.3 1624.2,1033.4 1625.0,1032.5C1626.7,1030.4 1631.2,1030.6 1640.0,1033.1C1649.1,1035.6 1658.6,1035.3 1667.5,1032.1C1675.0,1029.4 1677.6,1029.4 1679.1,1032.2C1680.3,1034.5 1679.8,1043.3 1678.0,1049.9C1671.6,1074.2 1673.5,1097.6 1682.6,1106.7C1686.2,1110.3 1696.3,1106.6 1697.6,1101.3C1698.0,1100.0 1697.3,1096.4 1696.2,1093.2C1690.8,1078.1 1693.5,1060.1 1702.6,1050.0C1707.9,1044.2 1712.6,1042.0 1720.0,1042.0C1726.9,1042.0 1729.0,1042.8 1733.8,1047.4C1744.5,1057.4 1741.2,1073.4 1723.6,1096.8C1720.5,1101.0 1719.8,1102.5 1720.7,1103.8C1722.8,1107.2 1729.9,1111.0 1737.0,1112.5C1746.2,1114.4 1753.4,1112.9 1761.6,1107.3C1770.5,1101.2 1771.6,1100.7 1774.0,1102.2C1778.4,1105.0 1775.3,1110.3 1765.3,1117.2C1750.3,1127.5 1733.3,1126.3 1711.2,1113.4C1708.1,1111.5 1707.9,1111.5 1704.8,1113.4C1696.6,1118.1 1693.5,1119.3 1689.1,1119.8C1676.7,1121.0 1666.9,1108.6 1663.5,1087.5C1661.9,1077.5 1661.8,1078.8 1665.7,1049.2C1666.3,1044.8 1666.3,1044.8 1660.4,1045.6C1653.4,1046.5 1646.2,1046.4 1641.7,1045.2C1635.5,1043.6 1634.0,1045.6 1634.0,1055.0C1634.0,1062.2 1630.2,1077.9 1626.6,1085.4C1622.3,1094.4 1611.2,1108.8 1603.3,1115.9C1586.9,1130.6 1568.6,1132.3 1559.6,1120.1C1558.2,1118.2 1556.3,1114.6 1555.4,1112.1C1552.5,1104.3 1551.9,1104.2 1546.4,1109.7C1537.8,1118.2 1527.3,1121.3 1518.7,1117.7C1515.5,1116.3 1508.0,1108.9 1508.0,1107.0C1508.0,1104.3 1504.0,1106.6 1498.0,1112.8C1485.3,1125.8 1476.0,1131.8 1465.0,1134.4C1461.4,1135.3 1458.3,1135.9 1458.0,1135.9C1457.7,1135.9 1455.0,1135.3 1452.0,1134.6ZM1724.4,1074.0C1730.9,1061.8 1729.4,1053.0 1720.8,1053.0C1713.0,1053.0 1708.5,1058.2 1705.9,1070.1C1704.5,1077.0 1706.9,1089.6 1709.8,1090.3C1712.3,1090.9 1719.8,1082.5 1724.4,1074.0ZM1430.6,1052.2C1438.1,1036.5 1440.5,1027.4 1443.6,1004.0C1446.2,984.5 1446.3,940.9 1443.7,932.8C1438.8,916.9 1430.2,928.5 1424.2,959.1C1418.3,988.6 1417.5,1043.1 1422.6,1060.2C1423.6,1063.5 1426.7,1060.3 1430.6,1052.2Z"/></g></svg></div>
+    <p class="label">Also at 31 Fitzroy Street</p>
+    <span class="go">Enter Lure &rarr;</span>
+  </a>
+
+  <section class="visit wrap" id="visit">
+    <p class="label">Visit</p>
+    <div class="cols">
+      <div><h3>Address</h3><p><a href="https://maps.google.com/?q=31+Fitzroy+Street,+St+Kilda+VIC+3182" target="_blank" rel="noopener">31 Fitzroy Street<br>St Kilda VIC 3182</a></p></div>
+      <div><h3>Hours</h3><p>Opening hours<br>coming soon</p></div>
+      <div><h3>Bookings</h3><p><a href="https://bookings.obeeapp.com/fishworks" target="_blank" rel="noopener">Reserve online</a></p></div>
     </div>
   </section>
-
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Fishworks</span>
+    <span class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="200 810 908 343" role="img" aria-label="Fishworks"><path fill="currentColor" fill-rule="evenodd" d="M570.5,1146.0C548.3,1139.4 530.7,1118.3 528.0,1095.2C523.9,1061.2 542.3,1031.7 572.9,1023.1C577.0,1022.0 580.7,1020.7 581.2,1020.2C581.8,1019.6 582.3,979.4 582.4,925.9C582.7,829.9 582.8,826.4 586.7,821.1C591.1,815.3 601.3,814.6 605.1,820.0C607.5,823.4 608.8,846.4 609.6,897.0C610.2,940.4 611.2,957.3 613.1,959.6C614.6,961.5 617.7,960.8 622.8,957.6C646.5,942.7 667.5,960.1 680.9,1005.5C685.3,1020.2 684.4,1026.7 677.6,1030.9C666.8,1037.6 660.8,1032.9 652.0,1010.7C649.3,1003.8 647.0,997.6 647.0,997.1C647.0,993.3 641.5,985.0 639.1,985.0C635.6,985.0 621.1,1002.4 616.2,1012.5C611.6,1021.8 611.4,1025.4 615.3,1028.2C627.6,1037.2 636.6,1049.4 641.6,1064.0C644.3,1071.8 644.3,1097.0 641.7,1105.0C634.9,1125.7 620.9,1139.7 600.9,1146.0C592.6,1148.6 579.0,1148.6 570.5,1146.0ZM222.2,1145.8C215.4,1142.5 213.1,1127.5 213.0,1086.5C212.9,1040.8 211.6,1018.0 209.0,1012.5C206.1,1006.6 206.1,999.0 209.0,994.6C214.9,985.4 215.3,983.8 216.1,961.5C217.6,920.5 223.7,903.8 239.3,898.6C247.3,895.9 255.2,897.4 263.5,903.1C274.9,910.9 278.9,920.7 273.2,927.1C269.3,931.4 258.6,932.5 253.9,929.1C250.3,926.5 248.6,926.9 246.7,930.7C243.7,936.8 238.8,977.9 240.9,980.3C241.6,981.2 245.3,982.0 250.8,982.4C270.1,984.0 273.6,985.8 272.7,993.6C271.7,1002.6 266.4,1006.4 252.0,1008.6C246.2,1009.5 243.1,1010.5 242.3,1011.6C241.3,1013.0 241.0,1023.9 241.0,1059.9C240.9,1116.2 240.0,1135.0 237.2,1140.7C234.2,1146.4 228.0,1148.6 222.2,1145.8ZM849.4,1144.2C847.7,1141.8 847.5,1138.9 847.2,1112.5C847.0,1096.5 847.4,1072.0 847.9,1058.0C848.5,1044.0 849.4,1020.4 850.0,1005.5C850.7,989.8 851.6,977.6 852.2,976.2C854.3,972.0 860.6,972.0 865.3,976.4C869.6,980.4 870.3,985.4 870.9,1015.4C871.5,1045.2 871.8,1046.4 876.2,1041.8C892.3,1024.9 901.3,1015.9 905.0,1012.9C915.0,1005.0 920.7,1005.2 922.3,1013.6C923.4,1019.7 919.0,1026.6 903.2,1043.7C888.1,1060.1 882.2,1068.8 883.4,1073.5C885.7,1082.4 902.1,1102.5 925.4,1124.9C929.2,1128.5 932.0,1132.1 932.1,1133.4C932.5,1140.8 929.8,1144.7 923.7,1145.7C916.1,1146.9 907.5,1139.9 892.8,1120.5C872.0,1093.1 869.2,1092.5 867.9,1115.8C866.9,1133.7 864.0,1142.4 858.0,1145.5C853.8,1147.7 851.5,1147.4 849.4,1144.2ZM418.1,1142.9C411.1,1140.4 405.9,1136.4 386.2,1118.1C377.2,1109.8 369.0,1102.5 367.9,1101.9C365.1,1100.4 362.2,1101.7 360.4,1105.2C357.7,1110.5 332.5,1135.4 326.8,1138.6C319.7,1142.4 307.9,1142.7 301.3,1139.2C288.4,1132.4 281.1,1119.1 279.0,1098.3C277.7,1086.0 277.7,1043.2 278.9,1032.5C279.7,1025.4 280.2,1024.2 282.9,1021.8C287.4,1017.8 294.6,1017.8 299.1,1021.8C303.5,1025.7 303.9,1028.8 304.9,1066.0C305.9,1099.5 306.5,1104.2 310.7,1110.7C313.0,1114.1 315.2,1113.5 320.1,1108.2C327.1,1100.7 343.0,1078.7 343.0,1076.6C343.0,1075.3 352.5,1060.1 355.8,1056.1C365.8,1043.9 379.7,1047.3 385.9,1063.6C392.5,1080.9 396.0,1086.8 405.8,1097.1C421.0,1113.2 430.0,1117.0 436.1,1109.7C442.2,1102.5 446.9,1080.4 447.0,1059.2C447.0,1044.9 448.6,1034.3 451.1,1030.7C454.2,1026.4 453.2,1025.2 444.1,1021.5C424.0,1013.3 416.1,1007.0 415.3,998.6C414.4,989.7 419.4,986.1 430.4,987.8C437.0,988.8 442.1,990.2 472.4,999.4C493.4,1005.7 502.0,1005.3 502.0,997.7C502.0,990.7 493.7,977.1 477.3,957.2C462.7,939.4 457.1,927.5 457.0,913.9C457.0,899.7 464.7,888.7 478.5,883.5C485.4,880.9 505.9,880.8 514.2,883.4C524.7,886.6 528.9,895.4 525.9,907.6C523.6,916.5 515.9,917.3 504.4,910.0C496.9,905.3 493.4,905.0 489.1,908.6C482.4,914.2 486.5,924.6 504.0,946.5C523.7,971.3 531.0,986.2 531.0,1001.4C531.0,1010.5 528.2,1016.6 520.9,1023.7C511.8,1032.5 509.5,1032.8 477.0,1030.7C472.9,1030.5 472.9,1030.5 475.0,1046.0C478.1,1069.2 473.0,1103.2 463.7,1122.0C459.3,1130.8 449.2,1141.0 442.5,1143.3C435.9,1145.6 425.1,1145.4 418.1,1142.9ZM706.3,1136.0C698.8,1131.5 696.0,1118.6 696.0,1088.7C696.0,1058.9 697.8,1051.7 706.5,1046.9C711.6,1044.1 716.6,1039.5 719.6,1034.7C730.5,1017.8 760.7,997.0 774.5,997.0C785.6,997.0 795.7,1007.7 792.8,1016.2C791.2,1021.1 788.8,1022.8 781.3,1024.5C771.9,1026.6 763.8,1032.1 751.0,1045.0C732.2,1063.9 727.3,1076.5 725.5,1110.5C724.7,1127.2 723.3,1134.7 720.7,1136.5C717.6,1138.6 710.1,1138.4 706.3,1136.0ZM1050.5,1136.5C1016.7,1131.7 987.0,1116.4 987.0,1103.7C987.0,1099.3 990.6,1094.0 993.8,1093.8C1002.6,1093.3 1012.6,1095.6 1044.5,1105.5C1060.4,1110.5 1070.2,1110.9 1073.3,1106.8C1075.3,1104.2 1075.3,1104.0 1073.5,1099.3C1070.6,1091.8 1061.3,1077.4 1052.6,1067.0C1040.7,1052.9 1035.7,1045.0 1030.9,1033.0C1028.6,1027.2 1029.1,1010.4 1031.7,1005.5C1038.6,992.5 1048.1,988.0 1068.5,988.0C1092.7,988.0 1100.2,993.4 1098.7,1009.9C1097.4,1023.1 1089.8,1024.5 1073.5,1014.5C1068.1,1011.1 1064.6,1011.3 1060.8,1015.0C1054.9,1021.0 1058.1,1028.7 1076.9,1053.7C1098.9,1082.9 1103.5,1092.7 1102.8,1108.5C1102.4,1116.8 1102.1,1117.9 1098.9,1123.0C1094.8,1129.4 1090.2,1133.5 1084.5,1136.1C1079.7,1138.3 1064.7,1138.5 1050.5,1136.5ZM598.4,1115.2C608.9,1109.5 614.3,1099.2 614.4,1085.0C614.4,1073.9 612.5,1069.0 605.1,1060.8C593.7,1048.1 579.2,1047.7 567.1,1059.8C559.8,1067.1 557.8,1072.3 557.8,1083.6C557.7,1110.2 578.1,1126.1 598.4,1115.2ZM333.3,1041.0C325.9,1037.9 324.8,1020.2 329.7,981.1C331.7,964.9 332.9,962.9 340.3,962.8C346.0,962.7 350.0,965.2 351.2,969.6C352.3,973.4 352.7,1022.9 351.7,1030.0C350.5,1038.2 347.7,1041.2 340.9,1041.6C337.9,1041.8 334.5,1041.6 333.3,1041.0ZM335.2,909.0C326.5,903.6 327.5,890.7 337.0,885.7C344.9,881.6 358.9,885.4 362.2,892.5C366.9,902.9 346.0,915.6 335.2,909.0Z"/></svg></span>
     <span>31 Fitzroy Street, St Kilda</span>
+    <span>© <span class="yr">2026</span> Fishworks</span>
   </div>
 </footer>
 
 <script src='https://bookings.obeeapp.com/iframe.js'></script>
 <script>
-  document.getElementById('yr').textContent=new Date().getFullYear();
+  document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());
   const h=document.querySelector('header');
-  addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>10),{passive:true});
+  addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>innerHeight*.55),{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>

@@ -23,7 +23,11 @@ $fw_words   = array_filter( array_map( 'trim', explode( ',', fw_mod( 'fw_lure_ma
 <header>
 	<nav class="wrap" aria-label="Lure">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="back">&larr; <?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
-		<a href="<?php echo esc_url( $fw_cta_url ); ?>" class="btn">Reserve</a>
+		<div class="links">
+			<?php if ( fw_private_dining_url() ) : ?><a href="<?php echo esc_url( fw_private_dining_url() ); ?>" class="hide-sm">Private dining</a><?php endif; ?>
+			<?php if ( fw_mod( 'fw_voucher_url' ) ) : ?><a href="<?php echo esc_url( fw_mod( 'fw_voucher_url' ) ); ?>" class="hide-sm" target="_blank" rel="noopener">Gift vouchers</a><?php endif; ?>
+			<a href="<?php echo esc_url( $fw_cta_url ); ?>" class="btn">Reserve</a>
+		</div>
 	</nav>
 </header>
 

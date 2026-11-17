@@ -47,7 +47,7 @@
   .bleed img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 
   /* intro */
-  .intro{padding:120px 0;text-align:center}
+  .intro{padding-top:120px;padding-bottom:120px;text-align:center}
   .intro h1,.intro h2{font-size:clamp(34px,5vw,62px);line-height:1.08;max-width:15ch;margin:22px auto 0}
   .intro p{max-width:520px;margin:26px auto 0;color:var(--muted)}
 
@@ -85,7 +85,7 @@
             border-bottom:1px solid rgba(255,59,47,.6);padding-bottom:4px;color:#fff}
 
   /* visit */
-  .visit{padding:110px 0}
+  .visit{padding-top:110px;padding-bottom:110px}
   .visit .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:36px}
   .visit h3{font-size:11px;text-transform:uppercase;letter-spacing:.28em;font-weight:500;margin-bottom:12px}
   .visit p{color:var(--muted)}
@@ -109,7 +109,7 @@
     .split{grid-template-columns:1fr}.split .img{height:70vw}
     .reserve .grid{grid-template-columns:1fr;gap:36px}
     .visit .cols{grid-template-columns:1fr;gap:30px}
-    .intro,.reserve,.visit{padding:80px 0}
+    .intro,.visit{padding-top:80px;padding-bottom:80px}.reserve{padding:80px 0}
   }
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}
     .hero .logo,.hero .label,.hero .btn,.reveal{opacity:1;transform:none}}
@@ -154,3 +154,46 @@ nav .menu-toggle{display:none;background:none;border:0;font:inherit;font-size:12
   .site-header.open nav .mark{opacity:1}
 }
 body:not(.home) nav .mark{opacity:1}
+
+/* ---------- Private dining ---------- */
+.pd{display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:start;padding-bottom:120px}
+.pd-intro{position:sticky;top:110px}
+.pd-intro .entry{padding:0;margin:20px 0 0;max-width:none}
+.enquiry fieldset{border:0;border-top:1px solid var(--ink);padding:26px 0 10px;margin:0 0 26px}
+.enquiry legend{font-size:11px;text-transform:uppercase;letter-spacing:.28em;font-weight:500;padding-right:14px}
+.enquiry .row{display:grid;gap:18px;margin-bottom:18px}
+.enquiry .row.two{grid-template-columns:1fr 1fr}
+.enquiry .row.three{grid-template-columns:1.4fr 1fr 1fr}
+.enquiry label{display:block;font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.enquiry .req{color:var(--green)}
+.enquiry .opt{opacity:.7}
+.enquiry input,.enquiry select,.enquiry textarea{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:0;padding:13px 14px;width:100%;display:block;margin-top:8px;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+.enquiry select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+.enquiry textarea{resize:vertical;min-height:130px}
+.enquiry input:focus,.enquiry select:focus,.enquiry textarea:focus{outline:none;border-color:var(--green)}
+.enquiry .invalid{border-color:#b3261e}
+.enquiry .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.enquiry .form-error{color:#b3261e;font-size:14px;margin:-6px 0 18px}
+.enquiry button[disabled]{opacity:.6;cursor:wait}
+.enquiry .btn{cursor:pointer;font-family:inherit}
+
+.fw-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(27,27,26,.55);opacity:0;transition:opacity .25s}
+.fw-modal[hidden]{display:none}
+.fw-modal.show{opacity:1}
+.fw-modal-box{background:var(--paper);max-width:440px;width:100%;padding:48px 36px 40px;text-align:center;transform:translateY(12px);transition:transform .3s}
+.fw-modal.show .fw-modal-box{transform:none}
+.fw-modal h2{font-size:38px;margin:18px 0 10px}
+.fw-modal p{color:var(--muted);margin-bottom:28px}
+.fw-modal .btn{cursor:pointer;background:none;font-family:inherit;color:var(--ink)}
+.tick{width:64px;height:64px;stroke:var(--green);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tick circle{stroke-dasharray:151;stroke-dashoffset:151}
+.tick path{stroke-dasharray:36;stroke-dashoffset:36}
+.fw-modal.show .tick circle{animation:draw .6s .1s ease forwards}
+.fw-modal.show .tick path{animation:draw .35s .6s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+@media (max-width:860px){
+  .pd{grid-template-columns:1fr;gap:40px;padding-bottom:80px}
+  .pd-intro{position:static}
+  .enquiry .row.two,.enquiry .row.three{grid-template-columns:1fr}
+}

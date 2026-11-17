@@ -7,7 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FW_VERSION', '1.0.0' );
+define( 'FW_VERSION', '1.1.0' );
+
+require_once get_template_directory() . '/inc/enquiry.php';
 
 /* -------------------------------------------------------------------------
  * Defaults (used until something is changed in Appearance → Customize)
@@ -22,6 +24,9 @@ function fw_defaults() {
 		'fw_email'         => '',
 		'fw_instagram'     => '',
 		'fw_obee_account'  => 'fishworks',
+		'fw_voucher_url'   => 'https://vouchers.obeeapp.com/fishworks/gift-voucher',
+		'fw_enquiry_email' => 'info@fishworks.co',
+		'fw_enquiry_thanks'=> 'Our team at Fishworks & Lure has received your enquiry and will contact you soon.',
 
 		// Home page.
 		'fw_hero_tag'      => '31 Fitzroy Street · St Kilda',
@@ -123,16 +128,24 @@ function fw_logo( $which = 'fishworks' ) {
 	return file_exists( $file ) ? file_get_contents( $file ) : esc_html( get_bloginfo( 'name' ) ); // phpcs:ignore
 }
 
-/** URL of the first page using the Lure template. */
-function fw_lure_url() {
+/** URL of the first published page using a given template. */
+function fw_template_url( $template ) {
 	$pages = get_pages(
 		array(
 			'meta_key'   => '_wp_page_template',
-			'meta_value' => 'template-lure.php',
+			'meta_value' => $template,
 			'number'     => 1,
 		)
 	);
 	return $pages ? get_permalink( $pages[0] ) : '';
+}
+
+function fw_lure_url() {
+	return fw_template_url( 'template-lure.php' );
+}
+
+function fw_private_dining_url() {
+	return fw_template_url( 'template-private-dining.php' );
 }
 
 function fw_reserve_url() {
@@ -173,6 +186,7 @@ add_action(
 		}
 		wp_enqueue_script( 'fw-site', $uri . '/assets/js/site.js', array(), FW_VERSION, true );
 		wp_register_script( 'obee', 'https://bookings.obeeapp.com/iframe.js', array(), null, true );
+		wp_register_script( 'fw-enquiry', $uri . '/assets/js/enquiry.js', array(), FW_VERSION, true );
 	}
 );
 
@@ -211,6 +225,14 @@ function fw_fallback_menu() {
 	echo '<li><a href="' . esc_url( $home . '#visit' ) . '">Visit</a></li>';
 	if ( $lure ) {
 		echo '<li class="lure-link"><a href="' . esc_url( $lure ) . '">Lure</a></li>';
+	}
+	$pd = fw_private_dining_url();
+	if ( $pd ) {
+		echo '<li' . ( is_page() && get_permalink() === $pd ? ' class="current-menu-item"' : '' ) . '><a href="' . esc_url( $pd ) . '">Private dining</a></li>';
+	}
+	$vouchers = fw_mod( 'fw_voucher_url' );
+	if ( $vouchers ) {
+		echo '<li><a href="' . esc_url( $vouchers ) . '" target="_blank" rel="noopener">Gift vouchers</a></li>';
 	}
 	echo '</ul>';
 }
@@ -269,6 +291,9 @@ add_action(
 		$text( 'fw_email', 'Email', 'fw_info', 'email' );
 		$text( 'fw_instagram', 'Instagram link', 'fw_info', 'url' );
 		$text( 'fw_obee_account', 'Obee booking account', 'fw_info', 'text', 'Used by the booking widget and [fishworks_booking].' );
+		$text( 'fw_voucher_url', 'Gift voucher link', 'fw_info', 'url', 'Leave empty to hide the Gift vouchers link.' );
+		$text( 'fw_enquiry_email', 'Private dining enquiries go to', 'fw_info', 'email' );
+		$text( 'fw_enquiry_thanks', 'Message shown after an enquiry is sent', 'fw_info', 'textarea' );
 
 		// Home page.
 		$text( 'fw_hero_tag', 'Hero line under logo', 'fw_home' );

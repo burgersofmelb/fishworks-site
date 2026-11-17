@@ -21,6 +21,8 @@ $fw_insta = fw_mod( 'fw_instagram' );
 			<h3>Bookings &amp; contact</h3>
 			<p>
 				<a href="<?php echo esc_url( 'https://bookings.obeeapp.com/' . rawurlencode( fw_mod( 'fw_obee_account' ) ) ); ?>" target="_blank" rel="noopener">Reserve online</a>
+				<?php if ( fw_private_dining_url() ) : ?><br><a href="<?php echo esc_url( fw_private_dining_url() ); ?>">Private dining enquiries</a><?php endif; ?>
+				<?php if ( fw_mod( 'fw_voucher_url' ) ) : ?><br><a href="<?php echo esc_url( fw_mod( 'fw_voucher_url' ) ); ?>" target="_blank" rel="noopener">Gift vouchers</a><?php endif; ?>
 				<?php if ( $fw_phone ) : ?><br><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $fw_phone ) ); ?>"><?php echo esc_html( $fw_phone ); ?></a><?php endif; ?>
 				<?php if ( $fw_email ) : ?><br><a href="mailto:<?php echo esc_attr( antispambot( $fw_email ) ); ?>"><?php echo esc_html( antispambot( $fw_email ) ); ?></a><?php endif; ?>
 				<?php if ( $fw_insta ) : ?><br><a href="<?php echo esc_url( $fw_insta ); ?>" target="_blank" rel="noopener">Instagram</a><?php endif; ?>

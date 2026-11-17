@@ -74,3 +74,7 @@
 .about .entry h2,.about .entry h3{color:#fff;font-weight:400}
 .about .entry a{color:#fff;border-bottom:1px solid var(--neon)}
 .screen-reader-text{position:absolute!important;clip:rect(1px,1px,1px,1px);width:1px;height:1px;overflow:hidden}
+nav .links{display:flex;align-items:center;gap:28px}
+nav .links a:not(.btn){color:var(--muted)}
+nav .links a:not(.btn):hover{color:var(--neon)}
+@media (max-width:760px){nav .links .hide-sm{display:none}}
